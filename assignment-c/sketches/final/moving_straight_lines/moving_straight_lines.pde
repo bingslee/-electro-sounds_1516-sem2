@@ -1,4 +1,4 @@
-
+//num = 20 indicates the number of lines
 int num =20;
 float step, az, sz, offSet, speed;
 
@@ -14,7 +14,6 @@ for(int i=0; i<num; i++){
 stroke(255);
 noFill();
 sz = i*step;
-//float offset = TWO_PI/num*i;
 float lineEnd = map(sin(speed*(i*0.2)), -1, 1, 0, 600);
 line(0, sz, lineEnd, sz );
 }

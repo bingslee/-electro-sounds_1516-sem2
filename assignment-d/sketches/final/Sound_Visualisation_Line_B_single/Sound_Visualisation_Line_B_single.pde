@@ -1,3 +1,5 @@
+//lines are reactive to amplitude of sountrack
+//single lines, colours are manipulated and exported individually
 import ddf.minim.*;
  
 AudioPlayer player;

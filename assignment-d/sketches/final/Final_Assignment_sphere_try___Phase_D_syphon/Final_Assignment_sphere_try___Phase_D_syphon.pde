@@ -1,3 +1,7 @@
+//this sketch is choreographed using duration
+//oscP5 allows duration to send osc signals to 
+//processing to synchronise the camera movement
+//syphon allows processing sketch to be recorded in syphon recorder
 import oscP5.*;
 import codeanticode.syphon.SyphonServer;
 
@@ -30,11 +34,14 @@ osc = new OscP5(this, 12345);
   change = 0.0;
 }
 void draw() {
+//bgCol choreographed using duration
 background(bgCol);
+//change = speed of sphere movement
 change = change + 0.02;
 float n = map(abs(sin(change) * 200),0,200,60,250);
 translate(width/2,height/2);
 //println(n);
+//posX & posY choreographed by duration
  camera(map(posX,0,960,-1000,2000), posY, 220.0, // eyeX, eyeY, eyeZ
         0.0, 0.0, 0.0, // centerX, centerY, centerZ
         0.0, 1.0, 0.0); // upX, upY, upZ
@@ -46,6 +53,7 @@ sz = i*step;
 float lineEnd1 = map(sin(speed*(i*0.2)), -1, 1, 0, 500);
 sphere(lineEnd1);
 
+//following functions are all reactive to osc signal from duration
 if(show >= 0.5){
 squares();}
 
@@ -61,7 +69,7 @@ syphon.sendScreen( );
 }
 }
 
-  
+ //for retrieval of osc signal from duration 
  void oscEvent(OscMessage m) {
 
   if (m.getAddress().equals("/c1")) {

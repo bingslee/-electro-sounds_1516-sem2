@@ -1,3 +1,5 @@
+//same as sphere function but creates boxes instead
+//activated by duration
 void squares(){
 change = change + 15;
 //float n = noise(change) * 250;

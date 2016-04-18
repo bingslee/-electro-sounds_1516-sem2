@@ -1,3 +1,5 @@
+//box size are reactive to amplitude of sountrack
+//colours are manipulated and exported individually
 import ddf.minim.*;
  
 AudioPlayer player;
