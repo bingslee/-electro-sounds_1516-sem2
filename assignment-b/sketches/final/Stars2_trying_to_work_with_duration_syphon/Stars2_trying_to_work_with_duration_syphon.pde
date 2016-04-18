@@ -1,3 +1,6 @@
+//this sketch is used with duration to choreograph movement
+//oscP5 library to recieve OSC signal from duration
+//syphon to send image to syphon for recording purposes
 import oscP5.*;
 import java.util.concurrent.*;
 import codeanticode.syphon.*;
@@ -5,7 +8,7 @@ import codeanticode.syphon.*;
 SyphonServer server;
 
 void settings() {
-  size(800,800, P3D);
+  size(960,540, P3D);
   PJOGL.profile=1;
 }
 
@@ -20,12 +23,13 @@ boolean show = false;
 
 float amt;
 
+//using of array to create boxes 
 Star[] stars = new Star[2000];
 float z = 0;
 float gain = 0;
  
 void setup() {
-  size(800, 800, P3D);
+  //size(800, 800, P3D);
   osc = new OscP5(this, 12345);
   server = new SyphonServer(this, "Processing Syphon");
   for(int i=0; i<stars.length; i++) {
@@ -35,7 +39,7 @@ void setup() {
 }
  
 void draw() {
-
+//bgcol coordinated with duration to create glitches
  background(bgcol); 
  if(show == true){
  bgcol = 0;
@@ -43,7 +47,7 @@ void draw() {
  bgcol = bgcol;}
   float mX = map(pos1, 0, width, 100, width*2);
   camera(0, 0, mX, 0, 0, 0, 0, 1, 0);
-
+//for movement of entire sketch to look like the stars are moving
  rotateY(z);
  rotateZ(z);
  z = z + 0.001;
@@ -53,7 +57,7 @@ void draw() {
    }
        server.sendScreen();
 }
-
+//class for movement of stars
 class Star {
  float x;
  float y;
@@ -101,3 +105,6 @@ if (m.getAddress().equals("/bang1")) {
     show = false;
   }}
 } 
+
+//reference for use of array:
+//http://www.openprocessing.org/sketch/48961
